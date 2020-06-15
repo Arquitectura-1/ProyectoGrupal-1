@@ -1,9 +1,9 @@
 
 codigo = open("Codigo.txt", "r")
 codigoBi = open("CodigoBinario.bin", "w")
-diccionarioInst = {'lv': '00000', 'mtl': '00001', 'dvs': '00010', 'rest': '00011',
-                   'sum': '00100', 'cp': '00101',  'b': '00110', 'beg': '00111', 'slr': '01000',
-                   'gp': '01001'}
+diccionarioInst = {'NOP':'00000000000000000000000000000000','lv': '00001', 'mtl': '00010', 'dvs': '00011',
+                   'rest': '00100','sum': '00101', 'cp': '00110',  'b': '00111', 'beg': '01000',
+                   'slr': '01001','gp': '01010', 'DONE':'01011000000000000000000000000000'}
 
 diccionarioReg = {'r1': '000000001', 'r2': '000000010', 'r3': '000000011', 'r4': '000000100',
                   'r5': '000000101', 'r6': '000000110', 'r7': '000000111', 'r8': '000001000',
@@ -48,7 +48,7 @@ def buscar(dato):
                 binario = str(bin(int(diccionarioEtiq[i]))[2:].zfill(9))
                 return binario             
     if (dato[0] == "#"):
-        inmediato = str(bin(int(dato.lstrip("#")))[2:].zfill(18))
+        inmediato = str(bin(int(dato.lstrip("#"),16))[2:].zfill(18))
         return inmediato
     else:
         return ""
@@ -66,10 +66,12 @@ codigo = open("Codigo.txt", "r")
 for lineas in codigo:
     resultado = ""
     for palabra in lineas.split():
-        codificacion = buscar(palabra)
-        resultado += str(codificacion)
-    codigoBi.write(resultado)
-    codigoBi.write("\n")
+        if(palabra[-1]!=":"):
+            codificacion = buscar(palabra)
+            resultado += str(codificacion)
+    if(resultado != ""):
+        codigoBi.write(resultado)
+        codigoBi.write("\n")
 codigoBi.close()
 
 
