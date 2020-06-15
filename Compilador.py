@@ -71,7 +71,7 @@ for lineas in codigo:
             resultado += str(codificacion)
     if(resultado != ""):
         codigoBi.write(resultado)
-        codigoBi.write("\n")
+        #codigoBi.write("\n")
 codigoBi.close()
 
 

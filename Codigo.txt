@@ -1,0 +1,72 @@
+lv r1 #2F3
+lv r2 #112F
+lv r5 #0
+lv r15 #25804
+loadPixel:
+lv r3 #1
+lv r9 #0
+cp r6 r5
+lv r7 #1
+NOP
+NOP
+NOP
+sum r5 r5 r7
+NOP
+NOP
+NOP
+cp r8 r5
+lv r10 #2
+NOP
+NOP
+NOP
+sum r5 r5 r10
+lv r17 #8
+NOP
+NOP
+NOP
+slr r8 r17
+NOP
+NOP
+NOP
+sum r9 r8 r6
+NOP
+NOP
+NOP
+decrypt:
+mtl r11 r9 r3
+NOP
+NOP
+NOP
+dvs r12 r11 r2
+NOP
+NOP
+NOP
+mtl r13 r12 r2
+NOP
+NOP
+NOP
+rest r9 r11 r13
+lv r16 #1
+NOP
+NOP
+NOP
+sum r3 r3 r16
+NOP
+NOP
+NOP
+beg r3 r1 storePixel
+NOP
+NOP
+b decrypt
+NOP
+NOP
+storePixel:
+gp r9 r15
+beg r5 r15 exit
+NOP
+NOP
+b loadPixel
+NOP
+NOP
+exit:
+DONE
