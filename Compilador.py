@@ -5,22 +5,25 @@ diccionarioInst = {'NOP':'00000000000000000000000000000000','lv': '00001', 'mtl'
                    'rest': '00100','sum': '00101', 'cp': '00110',  'b': '00111', 'beg': '01000',
                    'slr': '01001','gp': '01010', 'DONE':'01011000000000000000000000000000'}
 
-diccionarioReg = {'r1': '000000001', 'r2': '000000010', 'r3': '000000011', 'r4': '000000100',
-                  'r5': '000000101', 'r6': '000000110', 'r7': '000000111', 'r8': '000001000',
-                  'r9': '000001001', 'r10': '000001010', 'r11': '000001011', 'r12': '000001100',
-                  'r13': '000001101', 'r14': '000001111', 'r15': '000010000', 'r16': '000010001',
-                  'r17': '000010010'}
+diccionarioReg = {'r1': 1, 'r2': 2, 'r3': 3, 'r4': 4,
+                  'r5': 5, 'r6': 6, 'r7': 7, 'r8': 8,
+                  'r9': 9, 'r10': 10, 'r11': 11, 'r12': 12,
+                  'r13': 13, 'r14': 14, 'r15': 15, 'r16': 16,
+                  'r17': 17}
 diccionarioEtiq = {}
 valor = ""
 contadorLineas = 0
 contadorEtiquetas = 0
 bflag = 0
 twflag = 0
+countRegister = 0
+
 
                   
 def buscar(dato):
     global bflag
     global twflag
+    global countRegister
     if (dato == "b"):
         bflag = 1
     elif ((dato == "cp") or (dato == "gp") or (dato == "slr")):
@@ -32,11 +35,16 @@ def buscar(dato):
     for i in diccionarioReg:
         if (i == dato):
             if(twflag == 1):
-                twreg = str(bin(int(diccionarioReg[i]))[2:].zfill(18))
-                twflag = 0
-                return twreg
-            else: 
-                return diccionarioReg[i]
+                if(countRegister == 1):
+                    twreg = str(bin(int(diccionarioReg[i]))[2:].zfill(18))
+                    twflag = 0
+                    countRegister = 0
+                    return twreg
+                else:
+                    countRegister = 1
+                    return str(bin(int(diccionarioReg[i]))[2:].zfill(9))
+            else:
+                return str(bin(int(diccionarioReg[i]))[2:].zfill(9))
         
     for i  in diccionarioEtiq:
         if (i == dato):
