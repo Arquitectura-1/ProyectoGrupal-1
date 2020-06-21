@@ -2,13 +2,14 @@ module RegEXMEM_tb();
 
 logic clk = 1;
 logic [4:0] OpCode, OpCodeOut;
-logic [6:0]  CurrentAddress, CurrentAddressOut;
+logic [8:0] Rd, RdOut;
+logic [6:0]  BranchResult, BranchResultOut;
 logic [31:0] ResultAlu, ResultAluOut;
 
 
 
-RegEXMEM RegEXMEM(.clk(clk), .OpCode(OpCode), .CurrentAddress(CurrentAddress), 
-.ResultAlu(ResultAlu), .OpCodeOut(OpCodeOut), .CurrentAddressOut(CurrentAddressOut), 
+RegEXMEM RegEXMEM(.clk(clk), .OpCode(OpCode), .Rd(Rd), .BranchResult(BranchResult), 
+.ResultAlu(ResultAlu), .OpCodeOut(OpCodeOut), .RdOut(RdOut), .BranchResultOut(BranchResultOut), 
 .ResultAluOut(ResultAluOut));
 
 
@@ -18,18 +19,21 @@ always
 
 initial begin
 OpCode = 5'd3;
-CurrentAddress = 7'd1;
+Rd = 9'd8;
+BranchResult = 7'd1;
 ResultAlu = 32'd2;
 
 #10
 OpCode = 5'd11;
-CurrentAddress = 7'd6;
+Rd = 9'd7;
+BranchResult = 7'd6;
 ResultAlu = 32'd9;
 
 
 #10
 OpCode = 5'd7;
-CurrentAddress = 7'd9;
+Rd = 9'd11;
+BranchResult = 7'd9;
 ResultAlu = 32'd7;
 
 end

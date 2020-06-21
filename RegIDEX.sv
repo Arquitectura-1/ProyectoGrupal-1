@@ -4,12 +4,12 @@ input  logic [4:0] OpCode,
 input  logic [8:0]  Rd,
 input logic [8:0]  Rs,
 input logic [8:0]  Rt,
-input logic [26:0]  Dir,
+input logic [19:0]  Rsi,
 output  logic [4:0] OpCodeOut,
 output  logic [8:0]  RdOut,
 output logic [8:0]  RsOut,
 output logic [8:0]  RtOut,
-output logic [26:0]  DirOut
+output logic [19:0]  RsiOut
 );
 
 
@@ -17,7 +17,7 @@ logic [4:0] VOpCode;
 logic [8:0]  VRd;
 logic [8:0]  VRs;
 logic [8:0]  VRt;
-logic [26:0]  VDir;
+logic [19:0]  VRsi;
 
 	always @(posedge clk)
 	begin
@@ -25,7 +25,7 @@ logic [26:0]  VDir;
 			RdOut <= VRd;
 			RsOut <= VRs;
 			RtOut <= VRt;
-			DirOut <= VDir;
+			RsiOut <= VRsi;
 			
 	end 
 	always @(negedge clk)
@@ -34,7 +34,7 @@ logic [26:0]  VDir;
 			VRd <= Rd;
 			VRs <= Rs;
 			VRt <= Rt;
-			VDir <= Dir;
+			VRsi <= Rsi;
 	end
 
 endmodule 
