@@ -15,6 +15,6 @@ for pixel in fuente:
         mif.write(resultado)
         mif.write("\n")
         contdir+=1
-mif.write("END\n")
+mif.write("END;\n")
 mif.close()
     

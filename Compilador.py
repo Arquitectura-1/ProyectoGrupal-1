@@ -36,13 +36,13 @@ def buscar(dato):
         if (i == dato):
             if(twflag == 1):
                 if(countRegister == 1):
-                    twreg = str(bin(int(diccionarioReg[i]))[2:].zfill(18))
+                    twreg = str(bin(int(diccionarioReg[i]))[2:].zfill(20))
                     twflag = 0
                     countRegister = 0
                     return twreg
                 else:
                     countRegister = 1
-                    return str(bin(int(diccionarioReg[i]))[2:].zfill(9))
+                    return str(bin(int(diccionarioReg[i]))[2:].zfill(7))
             else:
                 return str(bin(int(diccionarioReg[i]))[2:].zfill(9))
         
@@ -79,7 +79,7 @@ for lineas in codigo:
             resultado += str(codificacion)
     if(resultado != ""):
         codigoBi.write(resultado)
-        #codigoBi.write("\n")
+        codigoBi.write("\n")
 codigoBi.close()
 
 
