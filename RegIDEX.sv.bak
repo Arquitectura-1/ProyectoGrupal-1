@@ -1,23 +1,23 @@
 module RegIDEX(
 input  logic clk,
 input  logic [4:0] OpCode,
-input  logic [31:0]  Rd,
-input logic [31:0]  Rs,
-input logic [31:0]  Rt,
-input logic [31:0]  Rsi,
+input  logic [8:0]  Rd,
+input logic [8:0]  Rs,
+input logic [8:0]  Rt,
+input logic [19:0]  Rsi,
 output  logic [4:0] OpCodeOut,
-output  logic [31:0]  RdOut,
-output logic [31:0]  RsOut,
-output logic [31:0]  RtOut,
-output logic [31:0]  RsiOut
+output  logic [8:0]  RdOut,
+output logic [8:0]  RsOut,
+output logic [8:0]  RtOut,
+output logic [19:0]  RsiOut
 );
 
 
 logic [4:0] VOpCode;
-logic [31:0]  VRd;
-logic [31:0]  VRs;
-logic [31:0]  VRt;
-logic [31:0]  VRsi;
+logic [8:0]  VRd;
+logic [8:0]  VRs;
+logic [8:0]  VRt;
+logic [19:0]  VRsi;
 
 	always @(posedge clk)
 	begin

@@ -1,26 +1,33 @@
 module RegMEMWB(
 input  logic clk,
-input logic [31:0]  ResultAlu,
-input  logic [6:0] WBAddress,
-output logic [31:0]  ResultAluOut,
-output  logic [6:0] WBAddressOut
-
+input logic [31:0]  Result,
+input  logic [6:0] RdWb, BranchResult,
+input logic Wrenable,
+output logic [31:0]  ResultOut,
+output  logic [6:0] RdWbOut,BranchResultOut,
+output logic WrenableOut
 );
 
 
-logic [31:0]  VResultAlu;
-logic [6:0] VWBAddress;
+logic [31:0]  VResult;
+logic [6:0] VRdWb, VBranchResult;
+logic VWrenable;
 
 	always @(posedge clk)
 	begin
-			WBAddressOut <= VWBAddress;
-			ResultAluOut <= VResultAlu;
+			ResultOut <=VResult;
+			RdWbOut <= VRdWb;
+			BranchResultOut <=VBranchResult;
+			WrenableOut <= VWrenable;
+
 			
 	end 
 	always @(negedge clk)
 	begin
-			VResultAlu <= ResultAlu;
-			VWBAddress <= WBAddress;
+			VResult <=Result;
+			VRdWb <= RdWb;
+			VBranchResult <=BranchResult;
+			VWrenable <= Wrenable;
 	end
 
-endmodule
+endmodule 

@@ -1,0 +1,18 @@
+module alu_tb();
+	integer OPCODE;
+	logic [31:0] A, B;
+	logic [31:0] AluResult;
+	
+	integer i;
+	
+	ALU uut (.OPCODE(OPCODE),.A(A), .B(B),.AluResult(AluResult));
+	initial begin 
+		for (i=0; i<=2; i=i+1)
+		begin
+			OPCODE=i;
+			A=i
+			B=i
+			#10;
+		end
+	end
+endmodule 

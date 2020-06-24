@@ -1,0 +1,6 @@
+module DECO (input logic [31:0]Result, Instruccion,input logic[8:0] RdWb,input logic Wrenable, output logic [8:0]OpCode, output logic [31:0] Rd,Rs,Rt, Rsi);
+	always_comb
+		case(Instruccion)
+		endcase
+	end
+endmodule 
