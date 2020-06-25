@@ -26,8 +26,9 @@ logic VWrenable;
 	begin
 			VResult <=Result;
 			VRdWb <= RdWb;
-			VBranchResult <=BranchResult;
 			VWrenable <= Wrenable;
+			VBranchResult <= BranchResult;
+			
 	end
 
 endmodule 

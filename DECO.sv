@@ -1,11 +1,9 @@
-module DECO (input logic [31:0] Result, Instruccion,input logic[8:0] RdWb,input logic Wrenable, input logic clock,output logic clockOut, output logic [4:0]OpCode, output logic [6:0]Rd, output logic [31:0] Rs,Rt, Rsi);
-	int Registers[32];
+module DECO (input logic [31:0] Result, Instruccion,input logic[6:0] RdWb,input logic Wrenable, input logic clock,output logic clockOut, output logic [4:0]OpCode, output logic [6:0]Rd, output logic [31:0] Rs,Rt, Rsi);
+	reg [17:0] Registers [0:31];
 	int reg1,reg2,reg3;
 	
-	always @(Wrenable) begin
-		if (Wrenable == 1) begin
-			Registers[RdWb] = Result;
-		end
+	always_ff @(Wrenable, Result) begin
+		if(Wrenable) Registers[RdWb] = Result;
 	end
 	
 	always@(Instruccion) begin
@@ -46,10 +44,11 @@ module DECO (input logic [31:0] Result, Instruccion,input logic[8:0] RdWb,input 
 		end
 		//beg r1,r2,test
 		else if (OpCode == 8) begin
+			reg1 = Instruccion[26:18];
 			reg2 = Instruccion[17:9];
 			Rsi = 0;
 			reg3 = Instruccion[8:0];
-			Rd = Instruccion[26:18];
+			Rd = Registers[reg1];
 			Rs = Registers[reg2];
 			Rt = reg3;
 		end
@@ -66,7 +65,7 @@ module DECO (input logic [31:0] Result, Instruccion,input logic[8:0] RdWb,input 
 		//gp r1,r2
 		else if (OpCode == 10) begin
 			Rd = 0;
-			Rs=Instruccion[9:0];
+			Rs=Instruccion[17:0];
 			Rsi=0;
 			Rt=0;
 		end

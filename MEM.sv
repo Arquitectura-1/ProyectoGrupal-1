@@ -1,5 +1,4 @@
-module MEM (input logic [6:0] RdOut, branchResult, input logic [31:0] AluResult, input logic [4:0] OpCode,output logic [31:0] Result,
-output logic [6:0] RdWb,output logic Wrenable,output logic [6:0] BranchResultOut);
+module MEM (input logic [6:0] RdOut, branchResult, input logic [31:0] AluResult, input logic [4:0] OpCode,output logic [31:0] Result,output logic [6:0] RdWb,output logic Wrenable,output logic [6:0] BranchResultOut);
 
 int Addr;
 int pixCounter=0;
@@ -21,6 +20,8 @@ reg [7:0] DataMemory10 [0:29391];
 //Memorias donde se guardan los valores finales
 reg [7:0] OutMemory1 [0:65000];
 
+
+
 initial begin
 	$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel1.txt", DataMemory1);
 	$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel2.txt", DataMemory2);
@@ -35,7 +36,8 @@ initial begin
 end
 
 always @(OpCode) begin
-	
+	$display(OpCode);
+	//CP
 	if(OpCode == 6) begin
 		Addr = AluResult;
 		RdWb = RdOut;
@@ -62,7 +64,7 @@ always @(OpCode) begin
 		else
 			Result = DataMemory10[Addr];
 	end 
-	
+	//GP
 	else if (OpCode == 10) begin
 		RdWb = 0;
 		BranchResultOut = 0;
@@ -79,45 +81,64 @@ always @(OpCode) begin
 			$writememb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\OutMemory1.txt",OutMemory1);
 		end
 	end
+	//LV
+	else if (OpCode == 1) begin
+		Result = AluResult;
+		RdWb = RdOut; 
+		Wrenable = 1;
+		BranchResultOut= 0000000;
+	end
+	
+	//suma,resta, mul y div
+	else if (OpCode >= 2 || OpCode <= 5) begin
+		Result = AluResult;
+		RdWb = RdOut; 
+		Wrenable = 1;
+		BranchResultOut= 0000000;
+	end
+	
+	//B
+	else if (OpCode == 5'b00111) begin
+		$display("Entro B");
+		BranchResultOut <= branchResult;
+		Result = 32'd0;
+		RdWb = 6'd0; 
+		Wrenable = 0;
+		
+	end
+	
+	//Beg
+	else if (OpCode == 8) begin
+		if (AluResult == 1) begin
+			Result = 32'd0;
+			RdWb = 6'd0; 
+			Wrenable = 0;
+			BranchResultOut= branchResult;
+		end
+		else begin
+			Result = 32'd0;
+			RdWb = 6'd0; 
+			Wrenable = 0;
+			BranchResultOut= 0000000;
+		end
+	end
+	//slr
+	else if (OpCode == 9) begin
+		Result = AluResult;
+		RdWb = RdOut; 
+		Wrenable = 1;
+		BranchResultOut= 0000000;
+	end
+	
+	else if(OpCode == 0) begin 
+		Result = 32'd0;
+		RdWb = 0; 
+		Wrenable = 0;
+		BranchResultOut= 0000000;
+	end
 end
 endmodule
 		
-		/*
-		if (pixCounter > 65000) begin
-			pixCounter =0;
-		end
-		
-		
-		else if(memCounter <65000) begin
-			OutMemory1[pixCounter]=AluResult[7:0];
-			pixCounter = pixCounter +1;
-			memCounter = memCounter +1;
-		end
-		
-		else if(memCounter >=65000 && Addr < 130000) begin
-			OutMemory2[pixCounter]=AluResult[7:0];
-			pixCounter = pixCounter +1;
-			memCounter = memCounter +1;
 
-		end
-		else if(memCounter >=130000 && Addr < 195000) begin
-			OutMemory3[pixCounter]=AluResult[7:0];
-			pixCounter = pixCounter +1;
-			memCounter = memCounter +1;
-		end
-		else if(memCounter >=195000 && Addr < 260000) begin
-			OutMemory4[pixCounter]=AluResult[7:0];
-			pixCounter = pixCounter +1;
-			memCounter = memCounter +1;
-		end
-		else if(memCounter >=260000) begin
-			OutMemory5[pixCounter]=AluResult[7:0];
-			pixCounter = pixCounter +1;
-			memCounter = memCounter +1;
-		end
-		
-	end
-	*/
-	
 	
  

@@ -2,7 +2,8 @@ module ALU (input logic [4:0] OPCODE, input logic [6:0] Rd, input logic [31:0] R
 
 	logic [31:0] tmpResult;
 			
-	always_comb begin
+		
+	always@(*) begin
 			RdOut=0;
 			branchResult=0;
 			OpCode=0;

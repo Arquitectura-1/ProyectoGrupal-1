@@ -1,7 +1,7 @@
 module CPU(input logic clk);
 
 //
-logic [6:0]branchResultOut =0000000;
+logic [6:0]branchResultOut;
 
 //MEM->Deco
 logic [31:0] Result;
@@ -50,9 +50,10 @@ logic [6:0] rdMWB;
 logic WrenableMWB=0;
 logic [6:0] branchResultMWB;
 
-Memoria_Procesador IF(.branchResultOut(branchResultOut),.clk(clk),.Instruccion(Instruccion));
 
-DECO deco (.Result(resultMWB),.RdWb(rdMWB),.Wrenable(WrenableMWB),.Instruccion(Instruccion),.clock(clk),.OpCode(OpCodeID),.Rd(RdID),.Rs(RsID),.Rsi(RtID),.Rt(RsiID),.clockOut(clockOutID));
+Memoria_Procesador IF(.branchResultOut(branchResultMWB),.clk(clk),.Instruccion(Instruccion));
+
+DECO deco (.Result(resultMWB),.RdWb(rdMWB),.Wrenable(WrenableMWB),.Instruccion(Instruccion),.clock(clk),.OpCode(OpCodeID),.Rd(RdID),.Rs(RsID),.Rsi(RsiID),.Rt(RtID),.clockOut(clockOutID));
 
 RegIDEX regIDEX(.clk(clk),.OpCode(OpCodeID),.Rd(RdID),.Rs(RsID),.Rt(RtID),.Rsi(RsiID),.OpCodeOut(OpCodeIDEX),.RdOut(RdIDEx),.RsOut(RsIDEx),.RtOut(RtIDEx),.RsiOut(RsiIDEx));
 
