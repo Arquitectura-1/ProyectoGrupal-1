@@ -67,10 +67,17 @@ module ALU (input logic [4:0] OPCODE, input logic [6:0] Rd, input logic [31:0] R
 					end
 				8: //BEG
 					begin
-						AluResult = Rd>Rs;
 						RdOut = 0;
 						branchResult = Rt;
 						OpCode = OPCODE;
+						
+						if(Rd>Rs) begin
+							AluResult = 1;
+						end
+						else begin
+							AluResult = 0;
+						end
+						
 					end
 				9: //slr
 					begin

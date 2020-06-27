@@ -21,7 +21,7 @@ module DECO (input logic [31:0] Result, Instruccion,input logic[6:0] RdWb,input 
 		//Lv r1,r2
 		else if (OpCode == 1) begin
 			Rd = Instruccion[26:18];
-			reg2 = Instruccion[17:0];
+			reg2 = Instruccion[19:0];
 			Rsi = reg2;
 			Rt = 0;
 			
@@ -29,7 +29,7 @@ module DECO (input logic [31:0] Result, Instruccion,input logic[6:0] RdWb,input 
 		//Cp r1,r2
 		else if (OpCode == 6) begin
 			Rd = Instruccion[26:18];
-			reg2 = Instruccion[17:0];
+			reg2 = Instruccion[19:0];
 			Rsi = reg2;
 			Rt = 0;
 			Rs=0;
@@ -54,13 +54,13 @@ module DECO (input logic [31:0] Result, Instruccion,input logic[6:0] RdWb,input 
 		end
 		//slr r1,r2
 		else if (OpCode == 9) begin
-			reg1 = Instruccion[26:18];
-			reg2 = Instruccion[17:9];
+			reg1 = Instruccion[25:20];
+			reg2 = Instruccion[19:0];
 			Rsi = 0;
 			reg3 = Instruccion[8:0];
-			Rd = Instruccion[26:18];
+			Rd = reg1;
 			Rs = Registers[reg1];
-			Rt = Registers[reg3];
+			Rt = reg2;
 		end 
 		//gp r1,r2
 		else if (OpCode == 10) begin
