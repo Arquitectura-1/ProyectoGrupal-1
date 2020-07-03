@@ -2,10 +2,11 @@
 module cpu_tb();
 
 logic clock=0;
-CPU UUT (clock);
+logic done;
+CPU UUT (clock, done);
 
-always #10
-	clock = ~clock;
+always#10 
+		clock = ~clock;
 
 initial begin
 	

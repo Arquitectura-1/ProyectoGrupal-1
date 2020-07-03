@@ -10,15 +10,11 @@ reg [7:0] DataMemory2 [0:64999];
 reg [7:0] DataMemory3 [0:64999];
 reg [7:0] DataMemory4 [0:64999];
 reg [7:0] DataMemory5 [0:64999];
-reg [7:0] DataMemory6 [0:64999];
-reg [7:0] DataMemory7 [0:64999];
-reg [7:0] DataMemory8 [0:64999];
-reg [7:0] DataMemory9 [0:64999];
-reg [7:0] DataMemory10 [0:29391];
+
 
 
 //Memorias donde se guardan los valores finales
-reg [7:0] OutMemory1 [0:65000];
+reg [7:0] OutMemory1 [0:153600];
 
 
 
@@ -28,11 +24,6 @@ initial begin
 	$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel3.txt", DataMemory3);
 	$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel4.txt", DataMemory4);
 	$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel5.txt", DataMemory5);
-	$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel6.txt", DataMemory6);
-	$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel7.txt", DataMemory7);
-	$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel8.txt", DataMemory8);
-	$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel9.txt", DataMemory9);
-	$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel10.txt", DataMemory10);
 end
 
 always @(OpCode) begin
@@ -79,18 +70,8 @@ always @(OpCode) begin
 			Result = DataMemory3[Addr];
 		else if(Addr < 260000)
 			Result = DataMemory4[Addr];
-		else if(Addr < 325000)
-			Result = DataMemory5[Addr];
-		else if(Addr < 390000)
-			Result = DataMemory6[Addr];
-		else if(Addr < 455000)
-			Result = DataMemory7[Addr];
-		else if(Addr< 520000) 
-			Result = DataMemory8[Addr];
-		else if(Addr < 585000)
-			Result = DataMemory9[Addr];
 		else
-			Result = DataMemory10[Addr];
+			Result = DataMemory5[Addr];
 	end 
 	
 	//B

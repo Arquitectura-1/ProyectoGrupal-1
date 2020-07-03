@@ -20,7 +20,7 @@ module DECO (input logic [31:0] Result, Instruccion,input logic[6:0] RdWb,input 
 		end
 		//Lv r1,r2
 		else if (OpCode == 1) begin
-			Rd = Instruccion[26:18];
+			Rd = Instruccion[26:20];
 			reg2 = Instruccion[19:0];
 			Rsi = reg2;
 			Rt = 0;

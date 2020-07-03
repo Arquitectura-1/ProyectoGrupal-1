@@ -1,4 +1,4 @@
-module CPU(input logic clk);
+module CPU(input logic clk, output logic Done);
 
 //
 logic [6:0]branchResultOut;
@@ -51,7 +51,7 @@ logic WrenableMWB=0;
 logic [6:0] branchResultMWB;
 
 
-Memoria_Procesador IF(.branchResultOut(branchResultMWB),.clk(clk),.Instruccion(Instruccion));
+Memoria_Procesador IF(.branchResultOut(branchResultMWB),.clk(clk),.Instruccion(Instruccion),.Done(Done));
 
 DECO deco (.Result(resultMWB),.RdWb(rdMWB),.Wrenable(WrenableMWB),.Instruccion(Instruccion),.clock(clk),.OpCode(OpCodeID),.Rd(RdID),.Rs(RsID),.Rsi(RsiID),.Rt(RtID),.clockOut(clockOutID));
 

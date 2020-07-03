@@ -1,10 +1,11 @@
-module Memoria_Procesador(input [6:0] branchResultOut,input logic clk,output logic [31:0] Instruccion);
+module Memoria_Procesador(input [6:0] branchResultOut,input logic clk,output logic [31:0] Instruccion, output logic Done);
 
 reg [6:0] pc=7'd0;
 reg valor_inicial=1; 
 
 reg [31:0] InsMem [0:70];
 
+reg [4:0] opcode;
 
 
 initial begin
@@ -19,8 +20,16 @@ begin
 			end
 			else begin
 				pc <= branchResultOut;
-				Instruccion <= InsMem[pc];
-		end	
+				opcode = InsMem[pc][31:27];
+				if(opcode != 5'b1011) begin
+					Instruccion <= InsMem[pc];
+					Done <= 1'b0;
+				end
+				else begin
+					Done <= 1'b1;
+				end
+					
+		end
 end
 
 
