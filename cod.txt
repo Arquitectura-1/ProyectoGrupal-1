@@ -1,0 +1,8 @@
+NOP
+NOP
+b Salida
+NOP
+NOP
+Salida: 
+NOP
+lv r1 #1

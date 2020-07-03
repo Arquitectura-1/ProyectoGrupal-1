@@ -1,5 +1,4 @@
-
-codigo = open("Codigo.txt", "r")
+codigo = open("codigotest.txt", "r")
 codigoBi = open("CodigoBinario.bin", "w")
 diccionarioInst = {'NOP':'00000000000000000000000000000000','lv': '00001', 'mtl': '00010', 'dvs': '00011',
                    'rest': '00100','sum': '00101', 'cp': '00110',  'b': '00111', 'beg': '01000',
@@ -16,18 +15,26 @@ contadorLineas = 0
 contadorEtiquetas = 0
 bflag = 0
 twflag = 0
+gpflag = 0
+lvflag = 0
 countRegister = 0
 
-
+    
                   
 def buscar(dato):
     global bflag
     global twflag
     global countRegister
+    global gpflag
+    global lvflag
     if (dato == "b"):
         bflag = 1
-    elif ((dato == "cp") or (dato == "gp") or (dato == "slr")):
+    elif ((dato == "cp")or (dato == "slr")):
         twflag = 1
+    elif(dato == "gp"):
+        gpflag = 1
+    elif(dato == "lv"):
+        lvflag = 1
     for i in diccionarioInst:
         if (i == dato):
             return diccionarioInst[i]
@@ -43,6 +50,9 @@ def buscar(dato):
                 else:
                     countRegister = 1
                     return str(bin(int(diccionarioReg[i]))[2:].zfill(7))
+            elif(lvflag == 1):
+                    lvflag = 0
+                    return str(bin(int(diccionarioReg[i]))[2:].zfill(7))
             else:
                 return str(bin(int(diccionarioReg[i]))[2:].zfill(9))
         
@@ -56,8 +66,13 @@ def buscar(dato):
                 binario = str(bin(int(diccionarioEtiq[i]))[2:].zfill(9))
                 return binario             
     if (dato[0] == "#"):
-        inmediato = str(bin(int(dato.lstrip("#"),16))[2:].zfill(18))
-        return inmediato
+        if(gpflag == 1):
+            inmediato = str(bin(int(dato.lstrip("#")))[2:].zfill(27))
+            gpflag = 0
+            return inmediato
+        else:
+            inmediato = str(bin(int(dato.lstrip("#")))[2:].zfill(20))
+            return inmediato
     else:
         return ""
 
@@ -68,8 +83,8 @@ for linea in codigo:
         if(palabra[-1] == ":"):
             diccionarioEtiq[palabra.rstrip(":")] = str(contadorLineas-contadorEtiquetas)
             contadorEtiquetas += 1
-            
-codigo = open("Codigo.txt", "r")
+codigo = open("codigotest.txt", "r")            
+#codigo = open("Codigo.txt", "r")
 
 for lineas in codigo:
     resultado = ""
@@ -79,7 +94,7 @@ for lineas in codigo:
             resultado += str(codificacion)
     if(resultado != ""):
         codigoBi.write(resultado)
-        codigoBi.write("\n")
+        #codigoBi.write("\n")
 codigoBi.close()
 
 

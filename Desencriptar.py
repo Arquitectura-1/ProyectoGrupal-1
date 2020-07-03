@@ -2,7 +2,8 @@ import numpy as np
 from matplotlib import pyplot
 import cv2
 imagentxt = open("3.txt","r")
-imgMatrix = np.zeros((640, 480),dtype=int)
+imagenPixel = open("imagenPixel.txt","w")
+imgMatrix = np.zeros((320, 480),dtype=int)
 flag = 0
 msb = ''
 lsb = ''
@@ -30,6 +31,7 @@ while True:
             lsb = ''
             pixel = expmod(pixelint)
             imgMatrix[i][j] = pixel
+            imagenPixel.write(str(pixel)+"\n")
             
             if(j == 479):
                 j = 0
@@ -44,7 +46,7 @@ while True:
         msb +=digito
     elif(flag==1):
         lsb+=digito
-
+imagenPixel.close()
 cv2.imwrite("imagen.png",imgMatrix)
 pyplot.imshow(imgMatrix,cmap='gray')
 pyplot.show()

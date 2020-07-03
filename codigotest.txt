@@ -1,0 +1,21 @@
+lv r1 #0
+NOP
+lv r2 #153600
+NOP
+lv r3 #1
+loop:
+	gp #255
+	sum r1 r1 r3
+	beg r1 r2 exit
+	NOP
+	NOP
+	NOP
+	NOP
+	b loop
+	NOP 
+	NOP
+	NOP
+	NOP
+	NOP
+exit:
+	DONE
