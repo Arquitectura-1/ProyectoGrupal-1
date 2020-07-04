@@ -5,9 +5,12 @@ logic clock=0;
 logic done;
 CPU UUT (clock, done);
 
-always#10 
+always#1
+	if(done != 1)
 		clock = ~clock;
-
+	else
+		$stop;
+		
 initial begin
 	
 end

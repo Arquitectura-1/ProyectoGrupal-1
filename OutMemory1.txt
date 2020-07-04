@@ -2,20 +2,20 @@
 // instance=/cpu_tb/UUT/memData/OutMemory1
 // format=bin addressradix=h dataradix=b version=1.0 wordsperline=1 noaddress
 11111111
-xxxxxxxx
-xxxxxxxx
-xxxxxxxx
-xxxxxxxx
-xxxxxxxx
-xxxxxxxx
-xxxxxxxx
-xxxxxxxx
-xxxxxxxx
-xxxxxxxx
-xxxxxxxx
-xxxxxxxx
-xxxxxxxx
-xxxxxxxx
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
+11111111
 xxxxxxxx
 xxxxxxxx
 xxxxxxxx

@@ -1,6 +1,5 @@
 module ALU (input logic [4:0] OPCODE, input logic [6:0] Rd, input logic [31:0] Rs, Rsi, Rt, output logic [6:0]RdOut, branchResult, output logic [4:0] OpCode, output logic [31:0] AluResult);
 
-	logic [31:0] tmpResult;
 			
 		
 	always@(*) begin

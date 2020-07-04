@@ -1,36 +1,25 @@
+`timescale 1 ps / 1 ps
 module MEM (input logic [6:0] RdOut, branchResult, input logic [31:0] AluResult, input logic [4:0] OpCode,output logic [31:0] Result,output logic [6:0] RdWb,output logic Wrenable,output logic [6:0] BranchResultOut);
 
-int Addr;
+logic [19:0] Addr;
 int pixCounter=0;
 int memCounter=0;
 
-//Memorias que contienen la imagen inicial
-reg [7:0] DataMemory1 [0:64999];
-reg [7:0] DataMemory2 [0:64999];
-reg [7:0] DataMemory3 [0:64999];
-reg [7:0] DataMemory4 [0:64999];
-reg [7:0] DataMemory5 [0:64999];
 
-
+reg [31:0] tmpResult;
 
 //Memorias donde se guardan los valores finales
 reg [7:0] OutMemory1 [0:153600];
 
 
+Data_Mem dMem (Addr,tmpResult);
 
-initial begin
-	$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel1.txt", DataMemory1);
-	$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel2.txt", DataMemory2);
-	$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel3.txt", DataMemory3);
-	$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel4.txt", DataMemory4);
-	$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel5.txt", DataMemory5);
-end
 
 always @(OpCode) begin
-	$display(OpCode);
+	//$display(OpCode);
 	
 	if(OpCode == 0) begin 
-	$display("Entro nop");
+	//$display("Entro nop");
 		Result = 32'd0;
 		RdWb = 0; 
 		Wrenable = 0;
@@ -39,7 +28,7 @@ always @(OpCode) begin
 	
 	//LV
 	else if (OpCode == 1) begin
-	$display("Entro lv");
+	//$display("Entro lv");
 		Result = AluResult;
 		RdWb = RdOut; 
 		Wrenable = 1;
@@ -48,7 +37,7 @@ always @(OpCode) begin
 	
 	//suma,resta, mul y div
 	else if (OpCode >= 2 && OpCode <= 5) begin
-	$display("Entro entro sum");
+	//$display("Entro entro sum");
 		Result = AluResult;
 		RdWb = RdOut; 
 		Wrenable = 1;
@@ -57,26 +46,17 @@ always @(OpCode) begin
 	
 	//CP
 	else if(OpCode == 6) begin
-	$display("Entro cp");
+	//$display("Entro cp");
 		Addr = AluResult;
 		RdWb = RdOut;
 		BranchResultOut = branchResult;
 		Wrenable =1;
-		if(Addr <65000)
-			Result = DataMemory1[Addr];
-		else if(Addr < 130000)
-			Result = DataMemory2[Addr];
-		else if(Addr < 195000)
-			Result = DataMemory3[Addr];
-		else if(Addr < 260000)
-			Result = DataMemory4[Addr];
-		else
-			Result = DataMemory5[Addr];
+		Result = tmpResult;
 	end 
 	
 	//B
 	else if (OpCode == 7) begin
-		$display("Entro B");
+		//$display("Entro B");
 		BranchResultOut <= branchResult;
 		Result = 32'd0;
 		RdWb = 6'd0; 
@@ -85,7 +65,7 @@ always @(OpCode) begin
 	
 	//Beg
 	else if (OpCode == 8) begin
-	$display("Entro Beg");
+	//$display("Entro Beg");
 		if (AluResult == 1) begin
 			Result = 32'd0;
 			RdWb = 6'd0; 
@@ -102,7 +82,7 @@ always @(OpCode) begin
 	
 	//slr
 	else if (OpCode == 9) begin
-	$display("Entro slr");
+	//$display("Entro slr");
 		Result = AluResult;
 		RdWb = RdOut; 
 		Wrenable = 1;
@@ -111,12 +91,14 @@ always @(OpCode) begin
 	
 	//GP
 	else if (OpCode == 10) begin
-	$display("Entro gp");
+	//$display("Entro gp");
+	
 		RdWb = 0;
 		BranchResultOut = 0;
 		Wrenable =0;
+		Result =32'd0;
 		
-		if (pixCounter > 304200) begin
+		if (pixCounter > 14) begin
 			pixCounter =0;
 			$writememb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\OutMemory1.txt",OutMemory1);
 		end
@@ -124,11 +106,13 @@ always @(OpCode) begin
 			OutMemory1[pixCounter]=AluResult[31:0];
 			pixCounter = pixCounter +1;
 			memCounter = memCounter +1;
-			$writememb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\OutMemory1.txt",OutMemory1);
+			//$writememb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\OutMemory1.txt",OutMemory1);
 		end
 	end
-	
 end
+
+
+
 
 endmodule
 		
