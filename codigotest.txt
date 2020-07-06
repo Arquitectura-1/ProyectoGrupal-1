@@ -1,21 +1,84 @@
-lv r1 #0
+lv r1 #1
 NOP
-lv r2 #153600
+lv r2 #4399
 NOP
-lv r3 #1
-loop:
-	gp #255
-	sum r1 r1 r3
-	beg r1 r2 exit
-	NOP
-	NOP
-	NOP
-	NOP
-	b loop
-	NOP 
-	NOP
-	NOP
-	NOP
-	NOP
+lv r5 #0
+NOP
+lv r15 #1
+NOP
+loadPixel:
+lv r3 #1 	
+NOP
+lv r9 #0 
+cp r6 r5 	
+lv r7 #1
+NOP
+NOP
+NOP
+sum r5 r5 r7 	
+NOP
+NOP
+NOP
+cp r8 r5 	
+lv r10 #2 	
+NOP
+NOP
+NOP
+sum r5 r5 r10 
+lv r17 #8
+NOP
+NOP
+NOP
+slr r6 r17 	
+NOP
+NOP
+NOP
+sum r9 r8 r6 	
+NOP
+NOP
+NOP
+decrypt:
+dvs r12 r9 r2
+NOP
+NOP
+NOP
+mtl r13 r12 r2
+NOP
+NOP
+NOP
+rest r9 r9 r13
+lv r16 #1
+NOP
+NOP
+NOP
+sum r3 r3 r16
+NOP
+NOP
+NOP
+beg r3 r1 storePixel
+NOP
+NOP
+NOP
+NOP
+b decrypt
+NOP
+NOP
+NOP
+NOP
+NOP
+storePixel:
+gp  r9
+beg r5 r15 exit
+NOP
+NOP
+NOP
+NOP
+NOP
+b loadPixel
+NOP
+NOP
+NOP
+NOP
+NOP
 exit:
-	DONE
+DONE

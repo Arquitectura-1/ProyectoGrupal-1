@@ -53,6 +53,10 @@ def buscar(dato):
             elif(lvflag == 1):
                     lvflag = 0
                     return str(bin(int(diccionarioReg[i]))[2:].zfill(7))
+            elif(gpflag == 1):
+                    inmediato = str(bin(int(diccionarioReg[i]))[2:].zfill(27))
+                    gpflag = 0
+                    return inmediato
             else:
                 return str(bin(int(diccionarioReg[i]))[2:].zfill(9))
         
@@ -66,13 +70,8 @@ def buscar(dato):
                 binario = str(bin(int(diccionarioEtiq[i]))[2:].zfill(9))
                 return binario             
     if (dato[0] == "#"):
-        if(gpflag == 1):
-            inmediato = str(bin(int(dato.lstrip("#")))[2:].zfill(27))
-            gpflag = 0
-            return inmediato
-        else:
-            inmediato = str(bin(int(dato.lstrip("#")))[2:].zfill(20))
-            return inmediato
+        inmediato = str(bin(int(dato.lstrip("#")))[2:].zfill(20))
+        return inmediato
     else:
         return ""
 
@@ -81,8 +80,9 @@ for linea in codigo:
     contadorLineas += 1
     for palabra in linea.split():
         if(palabra[-1] == ":"):
-            diccionarioEtiq[palabra.rstrip(":")] = str(contadorLineas-contadorEtiquetas)
+            diccionarioEtiq[palabra.rstrip(":")] = str(contadorLineas-contadorEtiquetas-1)
             contadorEtiquetas += 1
+print(diccionarioEtiq)
 codigo = open("codigotest.txt", "r")            
 #codigo = open("Codigo.txt", "r")
 
