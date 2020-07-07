@@ -6,7 +6,7 @@ reg [7:0] DataMemory1 [0:64999];
 reg [7:0] DataMemory2 [0:64999];
 reg [7:0] DataMemory3 [0:64999];
 reg [7:0] DataMemory4 [0:64999];
-reg [7:0] DataMemory5 [0:64999];
+reg [7:0] DataMemory5 [0:47199];
 
 	initial begin
 		$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel1.txt", DataMemory1);

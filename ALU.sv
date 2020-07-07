@@ -1,4 +1,4 @@
-module ALU (input logic [4:0] OPCODE, input logic [6:0] Rd, input logic [31:0] Rs, Rsi, Rt, output logic [6:0]RdOut, branchResult, output logic [4:0] OpCode, output logic [31:0] AluResult);
+module ALU (input logic [4:0] OPCODE, input logic [9:0] Rd, input logic [31:0] Rs, Rsi, Rt, output logic [6:0]RdOut, branchResult, output logic [4:0] OpCode, output logic [31:0] AluResult);
 
 			
 		
@@ -45,7 +45,7 @@ module ALU (input logic [4:0] OPCODE, input logic [6:0] Rd, input logic [31:0] R
 					end
 				5: //sum
 					begin
-						AluResult = Rs + Rt;
+						AluResult = Rt + Rs;
 						RdOut = Rd;
 						branchResult = 0;
 						OpCode = OPCODE;				

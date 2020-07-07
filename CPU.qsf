@@ -59,6 +59,19 @@ set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb -section_id testbench_
 set_global_assignment -name EDA_TEST_BENCH_FILE alu_tb.sv -section_id testbench_1
 set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
 set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name SYSTEMVERILOG_FILE vga_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE vga_controller320.sv
+set_global_assignment -name SYSTEMVERILOG_FILE vga_controller.sv
+set_global_assignment -name SYSTEMVERILOG_FILE vga.sv
+set_global_assignment -name SYSTEMVERILOG_FILE vertical_counter320.sv
+set_global_assignment -name SYSTEMVERILOG_FILE vertical_counter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ResultMem320.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ResultMem.sv
+set_global_assignment -name SYSTEMVERILOG_FILE horizontal_counter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Data_Mem.sv
 set_global_assignment -name SYSTEMVERILOG_FILE mem_tb_final.sv
 set_global_assignment -name SYSTEMVERILOG_FILE MEM_INIT.sv
 set_global_assignment -name SYSTEMVERILOG_FILE MEM_FINAL.sv
@@ -77,12 +90,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE DECO.sv
 set_global_assignment -name SYSTEMVERILOG_FILE deco_tb.sv
 set_global_assignment -name SYSTEMVERILOG_FILE CPU.sv
 set_global_assignment -name SYSTEMVERILOG_FILE cpu_tb.sv
-set_global_assignment -name QIP_FILE Memoria_Instrucciones.qip
 set_global_assignment -name SYSTEMVERILOG_FILE MEM.sv
 set_global_assignment -name SYSTEMVERILOG_FILE mem_tb.sv
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name QIP_FILE Memoria_prueba.qip
-set_global_assignment -name SYSTEMVERILOG_FILE output_files/Data_Mem.sv
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

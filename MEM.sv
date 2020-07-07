@@ -1,18 +1,16 @@
-`timescale 1 ps / 1 ps
+
 module MEM (input logic [6:0] RdOut, branchResult, input logic [31:0] AluResult, input logic [4:0] OpCode,output logic [31:0] Result,output logic [6:0] RdWb,output logic Wrenable,output logic [6:0] BranchResultOut);
 
 logic [19:0] Addr;
 int pixCounter=0;
-int memCounter=0;
 
-
-reg [31:0] tmpResult;
+reg [31:0] tmpResult=32'b0;
 
 //Memorias donde se guardan los valores finales
 reg [7:0] OutMemory1 [0:153600];
 
 
-Data_Mem dMem (Addr,tmpResult);
+Data_Mem dMem (Addr,Result);
 
 
 always @(OpCode) begin
@@ -47,11 +45,11 @@ always @(OpCode) begin
 	//CP
 	else if(OpCode == 6) begin
 	//$display("Entro cp");
-		Addr = AluResult;
-		RdWb = RdOut;
-		BranchResultOut = branchResult;
-		Wrenable =1;
-		Result = tmpResult;
+		Addr <= AluResult;
+		RdWb <= RdOut;
+		BranchResultOut <= branchResult;
+		Wrenable <=1;
+		Result[31:0] <= tmpResult[31:0] ;
 	end 
 	
 	//B
@@ -98,15 +96,13 @@ always @(OpCode) begin
 		Wrenable =0;
 		Result =32'd0;
 		
-		if (pixCounter > 14) begin
-			pixCounter =0;
-			$writememb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\OutMemory1.txt",OutMemory1);
-		end
-		else begin
+		if (pixCounter < 153600) begin
 			OutMemory1[pixCounter]=AluResult[31:0];
 			pixCounter = pixCounter +1;
-			memCounter = memCounter +1;
-			//$writememb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\OutMemory1.txt",OutMemory1);
+			
+		end
+		else begin
+			$writememb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\OutMemory1.txt",OutMemory1);
 		end
 	end
 end

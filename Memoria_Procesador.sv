@@ -1,10 +1,10 @@
-`timescale 1 ps / 1 ps
+
 module Memoria_Procesador(input [6:0] branchResultOut,input logic clk,output logic [31:0] Instruccion, output logic Done=0);
 
 reg [6:0] pc=7'd0;
 reg valor_inicial=1; 
 
-reg [31:0] InsMem [0:70];
+reg [31:0] InsMem [0:88];
 
 reg [4:0] opcode;
 
