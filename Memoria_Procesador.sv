@@ -4,7 +4,7 @@ module Memoria_Procesador(input [6:0] branchResultOut,input logic clk,output log
 reg [6:0] pc=7'd0;
 reg valor_inicial=1; 
 
-reg [31:0] InsMem [0:88];
+reg [31:0] InsMem [0:98];
 
 reg [4:0] opcode;
 
