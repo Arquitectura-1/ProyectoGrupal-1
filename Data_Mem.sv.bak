@@ -1,4 +1,4 @@
-module Data_Mem(input logic [19:0] addr, output logic [31:0] Result);
+module Data_Mem(input logic [19:0] Addr, output logic [31:0] Result);
 
 
 //Memorias que contienen la imagen inicial
@@ -6,18 +6,18 @@ reg [7:0] DataMemory1 [0:64999];
 reg [7:0] DataMemory2 [0:64999];
 reg [7:0] DataMemory3 [0:64999];
 reg [7:0] DataMemory4 [0:64999];
-reg [7:0] DataMemory5 [0:64999];
+reg [7:0] DataMemory5 [0:47199];
 
 	initial begin
-		$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel1.txt", DataMemory1);
-		$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel2.txt", DataMemory2);
-		$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel3.txt", DataMemory3);
-		$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel4.txt", DataMemory4);
-		$readmemb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\Pixel5.txt", DataMemory5);
+		$readmemb("C:\\Users\\USUARIO\\Documents\\ProyectoGrupal-1-Procesador\\Pixel1.txt", DataMemory1);
+		$readmemb("C:\\Users\\USUARIO\\Documents\\ProyectoGrupal-1-Procesador\\Pixel2.txt", DataMemory2);
+		$readmemb("C:\\Users\\USUARIO\\Documents\\ProyectoGrupal-1-Procesador\\Pixel3.txt", DataMemory3);
+		$readmemb("C:\\Users\\USUARIO\\Documents\\ProyectoGrupal-1-Procesador\\Pixel4.txt", DataMemory4);
+		$readmemb("C:\\Users\\USUARIO\\Documents\\ProyectoGrupal-1-Procesador\\Pixel5.txt", DataMemory5);
 	end
 	
 	
-	always@(addr)
+	always@(Addr)
 		if(Addr <65000)
 			Result = DataMemory1[Addr];
 		else if(Addr < 130000)

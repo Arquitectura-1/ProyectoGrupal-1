@@ -12,7 +12,7 @@ reg [4:0] opcode;
 
 
 initial begin
-	$readmemb("C:\\Users\\Gaby\\Desktop\\ProyectoGrupal-1-Procesador\\CodigoBin.txt", InsMem);
+	$readmemb("C:\\Users\\Gaby\\Desktop\\ProyectoGrupal-1-Procesador_2\\CodigoBin.txt", InsMem);
 end
 
 
