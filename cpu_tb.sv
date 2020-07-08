@@ -7,7 +7,8 @@ logic vgaDone;
 logic done;
 CPU UUT (clock, done);
 
-always#1
+
+always#0.5
 	if(done != 1)
 		clock = ~clock;
 	else if(done == 1) begin

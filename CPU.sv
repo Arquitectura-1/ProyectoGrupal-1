@@ -51,18 +51,17 @@ logic WrenableMWB=0;
 logic [6:0] branchResultMWB;
 
 
-//Memoria_Procesador IF(.branchResultOut(branchResultMWB),.clk(clk),.Instruccion(Instruccion),.Done(Done));
-Memoria_Procesador IF(.branchResultOut(branchResult),.clk(clk),.Instruccion(Instruccion),.Done(Done));
+Memoria_Procesador IF(.branchResultOut(branchResultMWB),.clk(clk),.Instruccion(Instruccion),.Done(Done));
 
-DECO deco (.Result(AluResult),.RdWb(RdOut),.Wrenable(Wrenable),.Instruccion(Instruccion),.clock(clk),.OpCode(OpCodeID),.Rd(RdID),.Rs(RsID),.Rsi(RsiID),.Rt(RtID),.clockOut(clockOutID));
+DECO deco (.Result(resultMWB),.RdWb(rdMWB),.Wrenable(WrenableMWB),.Instruccion(Instruccion),.clock(clk),.OpCode(OpCodeID),.Rd(RdID),.Rs(RsID),.Rsi(RsiID),.Rt(RtID),.clockOut(clockOutID));
 
 RegIDEX regIDEX(.clk(clk),.OpCode(OpCodeID),.Rd(RdID),.Rs(RsID),.Rt(RtID),.Rsi(RsiID),.OpCodeOut(OpCodeIDEX),.RdOut(RdIDEx),.RsOut(RsIDEx),.RtOut(RtIDEx),.RsiOut(RsiIDEx));
 
-ALU alu(.OPCODE(OpCodeIDEX), .Rd(RdIDEx), .Rs(RsIDEx), .Rsi(RsiIDEx), .Rt(RtIDEx),.RdOut(RdOut), .branchResult(branchResult),.OpCode(OpCode), .AluResult(AluResult), .Wrenable(Wrenable));
+ALU alu(.OPCODE(OpCodeIDEX), .Rd(RdIDEx), .Rs(RsIDEx), .Rsi(RsiIDEx), .Rt(RtIDEx),.RdOut(RdOut), .branchResult(branchResult),.OpCode(OpCode), .AluResult(AluResult));
 
 RegEXMEM regEXMEM(.clk(clk),.OpCode(OpCode),.RdOut(RdOut),.BranchResult(branchResult),.AluResult(AluResult),.OpCodeOut(OpCodeOutEXMEM),.RdOutOut(RdOutOutEXMEM),.BranchResultOut(BranchResultOutEXMEM),.AluResultOut(AluResultOutEXMEM));
 
-MEM memData(.Wrenable(Wrenable), .RdOut(RdOutOutEXMEM), .branchResult(BranchResultOutEXMEM), .AluResult(AluResultOutEXMEM), .OpCode(OpCodeOutEXMEM),.Result(AluResult),.RdWb(RdOut),.BranchResultOut(branchResultMEM));
+MEM memData(.RdOut(RdOutOutEXMEM), .branchResult(BranchResultOutEXMEM), .AluResult(AluResultOutEXMEM), .OpCode(OpCodeOutEXMEM),.Result(resultMEM),.RdWb(rdMEM),.Wrenable(Wrenable),.BranchResultOut(branchResultMEM));
 
-RegMEMWB regmemwb(.clk(clk),.Result(resultMEM),.RdWb(rdMEM), .BranchResult(branchResultMEM),.ResultOut(resultMWB),.RdWbOut(rdMWB),.BranchResultOut(branchResultMWB),.WrenableOut(WrenableMWB));
+RegMEMWB regmemwb(.clk(clk),.Result(resultMEM),.RdWb(rdMEM), .BranchResult(branchResultMEM),.Wrenable(Wrenable),.ResultOut(resultMWB),.RdWbOut(rdMWB),.BranchResultOut(branchResultMWB),.WrenableOut(WrenableMWB));
 endmodule 

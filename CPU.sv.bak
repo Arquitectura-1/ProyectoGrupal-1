@@ -1,0 +1,8 @@
+module CPU();
+
+DECO deco ();
+RegIDEX regIDEX();
+ALU alu();
+RegEXMEM regEXMEM();
+
+endmodule 

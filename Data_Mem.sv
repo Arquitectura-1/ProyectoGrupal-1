@@ -9,11 +9,11 @@ reg [7:0] DataMemory4 [0:64999];
 reg [7:0] DataMemory5 [0:47199];
 
 	initial begin
-		$readmemb("C:\\Users\\Gaby\\Desktop\\ProyectoGrupal-1-Procesador_2\\Pixel1.txt", DataMemory1);
-		$readmemb("C:\\Users\\Gaby\\Desktop\\ProyectoGrupal-1-Procesador_2\\Pixel2.txt", DataMemory2);
-		$readmemb("C:\\Users\\Gaby\\Desktop\\ProyectoGrupal-1-Procesador_2\\Pixel3.txt", DataMemory3);
-		$readmemb("C:\\Users\\Gaby\\Desktop\\ProyectoGrupal-1-Procesador_2\\Pixel4.txt", DataMemory4);
-		$readmemb("C:\\Users\\Gaby\\Desktop\\ProyectoGrupal-1-Procesador_2\\Pixel5.txt", DataMemory5);
+		$readmemb("C:\\Users\\Gaby\\Desktop\\ProyectoGrupal-1-Procesador\\Pixel1.txt", DataMemory1);
+		$readmemb("C:\\Users\\Gaby\\Desktop\\ProyectoGrupal-1-Procesador\\Pixel2.txt", DataMemory2);
+		$readmemb("C:\\Users\\Gaby\\Desktop\\ProyectoGrupal-1-Procesador\\Pixel3.txt", DataMemory3);
+		$readmemb("C:\\Users\\Gaby\\Desktop\\ProyectoGrupal-1-Procesador\\Pixel4.txt", DataMemory4);
+		$readmemb("C:\\Users\\Gaby\\Desktop\\ProyectoGrupal-1-Procesador\\Pixel5.txt", DataMemory5);
 	end
 	
 	
