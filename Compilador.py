@@ -1,4 +1,4 @@
-codigo = open("codigotest.txt", "r")
+codigo = open("codigo.txt", "r")
 codigoBi = open("CodigoBinario.bin", "w")
 diccionarioInst = {'NOP':'00000000000000000000000000000000','lv': '00001', 'mtl': '00010', 'dvs': '00011',
                    'rest': '00100','sum': '00101', 'cp': '00110',  'b': '00111', 'beg': '01000',
@@ -8,7 +8,9 @@ diccionarioReg = {'r1': 1, 'r2': 2, 'r3': 3, 'r4': 4,
                   'r5': 5, 'r6': 6, 'r7': 7, 'r8': 8,
                   'r9': 9, 'r10': 10, 'r11': 11, 'r12': 12,
                   'r13': 13, 'r14': 14, 'r15': 15, 'r16': 16,
-                  'r17': 17}
+                  'r17': 17, 'r18': 18, 'r19': 19, 'r20': 20,
+                  'r21': 21, 'r22': 22, 'r23': 23, 'r24': 24,
+                  'r25': 25}
 diccionarioEtiq = {}
 valor = ""
 contadorLineas = 0
@@ -83,7 +85,7 @@ for linea in codigo:
             diccionarioEtiq[palabra.rstrip(":")] = str(contadorLineas-contadorEtiquetas-1)
             contadorEtiquetas += 1
 print(diccionarioEtiq)
-codigo = open("codigotest.txt", "r")            
+codigo = open("codigo.txt", "r")            
 #codigo = open("Codigo.txt", "r")
 
 for lineas in codigo:
