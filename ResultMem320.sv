@@ -13,7 +13,7 @@ output logic [7:0] B
 
 	
 	initial begin
-	$readmemb("C:\\Users\\allan\\Desktop\\TEC\\I Semestre 2020\\Arqutectura de Computadores\\Proyecto2\\VGA\\OutMemory1.txt", PixMem1);
+	$readmemb("C:\\Users\\allan\\Desktop\\TEC\\I Semestre 2020\\Arqutectura de Computadores\\Proyecto2\\VGA\\OutMemory1 (1).txt", PixMem1);
 	end
 	logic [18:0] contadorDir = 0;
 	
