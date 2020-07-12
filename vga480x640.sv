@@ -14,7 +14,7 @@ module vga480x640(
 	ResultMem mem(.clk(clk), .H_Count_Value(H_Count_Value), .V_Count_Value(V_Count_Value), .R(R), .G(G), .B(B));
 	
 	always@(posedge clk) begin
-		if(V_Count_Value == 639 && H_Count_Value == 639 ) begin
+		if(V_Count_Value == 658 && H_Count_Value == 639 ) begin
 			DONE <= 1;
 		end
 	end

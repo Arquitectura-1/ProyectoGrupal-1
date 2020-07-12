@@ -8,21 +8,16 @@ output logic [7:0] B
 );
 
 	
-	reg [7:0] PixMem1 [0:153599];
-
-
+	logic [7:0]  result;
+	logic [17:0] contadorDir = 0;
 	
-	initial begin
-	$readmemb("C:\\Users\\allan\\Desktop\\TEC\\I Semestre 2020\\Arqutectura de Computadores\\Proyecto2\\VGA\\OutMemory1 (1).txt", PixMem1);
-	end
-	logic [18:0] contadorDir = 0;
-	
+	Mem320 mem(.address(contadorDir), .result(result));
 	
 	always@(posedge clk) begin
 		if(H_Count_Value <= 479 && V_Count_Value <= 319) begin
-				R = PixMem1[contadorDir];
-				G = PixMem1[contadorDir];
-				B = PixMem1[contadorDir];
+				R = result;
+				G = result;
+				B = result;
 				contadorDir <= contadorDir + 1;
 		end
 		else begin
