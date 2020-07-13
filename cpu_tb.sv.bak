@@ -1,0 +1,11 @@
+module cpu_tb();
+logic clock=0;
+CPU UUT (clock);
+
+always #10
+	clock = ~clock;
+
+initial begin
+	
+end
+endmodule 

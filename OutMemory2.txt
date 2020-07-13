@@ -1,0 +1,14 @@
+// memory data file (do not edit the following line - required for mem load use)
+// instance=/vga_tb/DUT2/memData/genblk1/oMem/OutMemory2
+// format=bin addressradix=h dataradix=b version=1.0 wordsperline=1 noaddress
+11011101
+11011010
+11010010
+11010010
+11010011
+11001010
+11010011
+10111111
+11001000
+10100010
+xxxxxxxx
