@@ -2,7 +2,7 @@ codigo = open("codigo.txt", "r")
 codigoBi = open("CodigoBinario.bin", "w")
 diccionarioInst = {'NOP':'00000000000000000000000000000000','lv': '00001', 'mtl': '00010', 'dvs': '00011',
                    'rest': '00100','sum': '00101', 'cp': '00110',  'b': '00111', 'beg': '01000',
-                   'slr': '01001','gp': '01010', 'DONE':'01011000000000000000000000000000'}
+                   'slr': '01001','gp': '01010', 'DONE':'01011000000000000000000000000000', 'decryption': '01100'}
 
 diccionarioReg = {'r1': 1, 'r2': 2, 'r3': 3, 'r4': 4,
                   'r5': 5, 'r6': 6, 'r7': 7, 'r8': 8,
@@ -19,6 +19,7 @@ bflag = 0
 twflag = 0
 gpflag = 0
 lvflag = 0
+begflag = 0
 countRegister = 0
 
     
@@ -29,6 +30,7 @@ def buscar(dato):
     global countRegister
     global gpflag
     global lvflag
+    global begflag
     if (dato == "b"):
         bflag = 1
     elif ((dato == "cp")or (dato == "slr")):
@@ -37,6 +39,8 @@ def buscar(dato):
         gpflag = 1
     elif(dato == "lv"):
         lvflag = 1
+    elif(dato == "beg"):
+        begflag = 1
     for i in diccionarioInst:
         if (i == dato):
             return diccionarioInst[i]
@@ -55,6 +59,8 @@ def buscar(dato):
             elif(lvflag == 1):
                     lvflag = 0
                     return str(bin(int(diccionarioReg[i]))[2:].zfill(7))
+            elif(begflag == 1):
+                    return str(bin(int(diccionarioReg[i]))[2:].zfill(7))
             elif(gpflag == 1):
                     inmediato = str(bin(int(diccionarioReg[i]))[2:].zfill(27))
                     gpflag = 0
@@ -69,7 +75,7 @@ def buscar(dato):
                 bflag = 0
                 return binario
             else:
-                binario = str(bin(int(diccionarioEtiq[i]))[2:].zfill(9))
+                binario = str(bin(int(diccionarioEtiq[i]))[2:].zfill(13))
                 return binario             
     if (dato[0] == "#"):
         inmediato = str(bin(int(dato.lstrip("#")))[2:].zfill(20))
@@ -97,6 +103,7 @@ for lineas in codigo:
     if(resultado != ""):
         codigoBi.write(resultado)
         #codigoBi.write("\n")
+    begflag = 0
 codigoBi.close()
 
 
