@@ -1,0 +1,17 @@
+module modulo (input logic [127:0] num, input logic [12:0] div, output logic [127:0] result);
+	logic [127:0] temp;
+	
+	
+	always @* begin
+		
+		if (num < div) begin
+			result = num;
+		end
+		else begin
+			temp = num *(1%div);
+			result = num - (temp * div);
+		end
+	end
+endmodule
+			
+	
