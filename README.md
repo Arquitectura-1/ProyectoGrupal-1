@@ -28,6 +28,3 @@ El proyecto cuenta con un compilador de código para generar el binario que corr
 2. Abrir el archivo Compilador2.0.py y ejecutarlo.
 3. Copiar el archivo generado en la carpeta donde se encuentra el proyecto, reemplazando el codigoBin.txt existente.
 
-Si desea desencriptar una imagen que no es la base, debe generar dos archivos que corresponden a las mitades que corren cada uno de los procesadores, para esto debe.
-
-1. 
