@@ -15,7 +15,7 @@ Utilizando el instalador de paquetes de Python, instalar las librerías necesari
 -pip install tkinter
 ```
 
-## Usage
+## Uso
 1. Descargar el .zip de este proyecto y descomprimirlo.
 2. Abrir el .qof desde Quartus y compilar el proyecto para luego programar la FPGA.
 3. Si desea simularlo, debe compilar el proyecto desde Modelsim, una vez compilado, abrir el vga_tb y ejecutar la simulación.
