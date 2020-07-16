@@ -1,0 +1,19 @@
+module Conmutador(
+input logic [6:0] Rdout1,
+input logic [31:0] AluResult1,
+input logic Wrenable1,
+input logic [6:0] Rdout2,
+input logic [31:0] AluResult2,
+input logic Wrenable2,
+output logic [6:0] Rdout,
+output logic [31:0] AluResult,
+output logic Wrenable
+);
+
+
+	assign Rdout = (Rdout1 == 7'b0) ? Rdout2 : Rdout1;
+	assign AluResult = (AluResult1 == 31'b0) ? AluResult2 : AluResult1;
+	assign Wrenable = (Wrenable1 == 0) ? Wrenable2 : Wrenable1;
+
+
+endmodule 

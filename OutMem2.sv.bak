@@ -1,0 +1,15 @@
+module OutMem2 (input logic [31:0] Result);
+
+	int pixCounter=0;
+	reg [7:0] OutMemory2 [0:10000];
+
+		always@(Result)
+			if (pixCounter < 10000) begin
+				OutMemory2[pixCounter]=Result[31:0];
+				pixCounter = pixCounter +1;
+			end
+			else begin
+				$writememb("C:\\Users\\bryan\\Desktop\\SegundoProyecto\\OutMemory2.txt",OutMemory2);
+			end
+			
+endmodule 
