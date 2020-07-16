@@ -1,4 +1,4 @@
-# ProyectoGrupal-Arqui1
+# Diseño e Implementación de un ASIP de desencriptación mediante RSA
 Este proyecto consiste en un ASIP capaz de desencriptar una imagen mediante el algoritmo RSA.
 
 ## Requisitos
