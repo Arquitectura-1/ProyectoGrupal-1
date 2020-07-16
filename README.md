@@ -18,5 +18,6 @@ Utilizando el instalador de paquetes de Python, instalar las librerías necesari
 ## Uso
 1. Descargar el .zip de este proyecto y descomprimirlo.
 2. Abrir el .qof desde Quartus y compilar el proyecto para luego programar la FPGA.
-3. Si desea simularlo, debe compilar el proyecto desde Modelsim, una vez compilado, abrir el vga_tb y ejecutar la simulación.
+3. Si desea simularlo, debe compilar el proyecto desde Modelsim, una vez compilado, abrir el vga_tb.sv y ejecutar la simulación.
+4. Cuando finaliza la simulación, abrir el archivo img_to_jpgGUI.py que se encuentra en la carpeta y ejecutarlo. Esto mostrará la imagen encriptada y la desencriptada.
 
